@@ -19,10 +19,6 @@ class Article < ActiveRecord::Base
     def self.text_search(query)
       if query.present?
         search(query)
-        # rank = <<-RANK
-        #   ts_rank(to_tsvector(name), plainto_tsquery(#{sanitize(query)}))
-        # RANK
-        # where("to_tsvector('english', name) @@ :q or to_tsvector('english', content) @@ :q", q: query)#.order("#{rank} desc")
       else
         Article.all
       end
